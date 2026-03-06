@@ -129,5 +129,10 @@ linksGrid.addEventListener("click", (evento) => {
     modal.showModal();
   }
 });
+function carregarImagemFundo() {
+  const urlImagem = `https://picsum.photos/1920/1080?random=${Math.random()}`;
+  document.body.style.backgroundImage = `url('${urlImagem}')`;
+}
 
 renderizarLinks();
+carregarImagemFundo();
