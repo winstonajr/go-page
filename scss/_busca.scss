@@ -24,8 +24,8 @@
   }
 
   .search-engine-select {
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
+    text-align: center;
 
     option {
       background: $cor-superficie;
@@ -39,6 +39,7 @@
   .search-btn {
     background: $cor-destaque;
     border: none;
+    color: $cor-texto;
     border-radius: 50%;
     width: 45px;
     height: 45px;
