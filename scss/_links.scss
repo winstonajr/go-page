@@ -28,7 +28,7 @@
   .link-item {
     @include centralizar;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.8rem;
     text-decoration: none;
     color: $cor-texto-secundario;
     padding: 0.4rem 1rem;
