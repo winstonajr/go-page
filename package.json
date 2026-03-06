@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch scss/style.scss css/style.css",
-    "build": "sass scss/style.scss css/style.css --style compressed"
+    "build": "sass scss/style.scss css/style.css --style compressed --no-source-map"
   },
   "keywords": [],
   "author": "winstonajr",
