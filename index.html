@@ -9,7 +9,55 @@
 </head>
 
 <body>
+  <main class="app-container">
 
+    <section class="search-section">
+      <form id="search-form" class="search-form">
+        <select id="search-engine" class="search-engine-select">
+          <option value="https://www.google.com/search?q=">Google</option>
+          <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
+          <option value="https://www.bing.com/search?q=">Bing</option>
+        </select>
+
+        <input type="search" id="search-input" class="search-input" placeholder="Pesquise na web..." required autocomplete="off" autofocus>
+        <button type="submit" class="search-btn"><i data-lucide="search"></i></button>
+      </form>
+    </section>
+
+    <section class="links-section">
+      <div id="links-grid" class="links-grid">
+      </div>
+
+      <button id="btn-open-modal" class="btn-add-link"><i data-lucide="plus"></i> Adicionar Atalho</button>
+    </section>
+
+    <dialog id="add-link-modal" class="modal">
+      <div class="modal-content">
+        <h2>Novo Atalho</h2>
+        <form id="add-link-form">
+
+          <div class="input-group">
+            <label for="link-name">Nome do Site</label>
+            <input type="text" id="link-name" placeholder="Ex: GitHub" required autocomplete="off">
+          </div>
+
+          <div class="input-group">
+            <label for="link-url">URL</label>
+            <input type="url" id="link-url" placeholder="Ex: https://github.com" required autocomplete="off">
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" id="btn-close-modal" class="btn-cancel">Cancelar</button>
+            <button type="submit" class="btn-save">Salvar</button>
+          </div>
+
+        </form>
+      </div>
+    </dialog>
+
+  </main>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>
