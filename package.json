@@ -1,14 +1,15 @@
 {
   "name": "go-page",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch scss/style.scss css/style.css --style compressed"
+    "sass": "sass --watch scss/style.scss css/style.css",
+    "build": "sass scss/style.scss css/style.css --style compressed"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "winstonajr",
+  "license": "MIT",
   "packageManager": "pnpm@10.30.3",
   "devDependencies": {
     "sass": "^1.97.3"
