@@ -1,0 +1,20 @@
+@use "variaveis" as *;
+@use "mixins" as *;
+
+body {
+  background-color: $cor-fundo;
+  color: $cor-texto;
+  font-family: "Inter", system-ui, sans-serif;
+  height: 100vh;
+  @include centralizar;
+  overflow: hidden;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}

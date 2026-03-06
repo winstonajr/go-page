@@ -1,0 +1,125 @@
+@use "variaveis" as *;
+@use "mixins" as *;
+
+.links-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+
+  .link-container {
+    position: relative;
+    width: 100%;
+
+    &:hover .link-actions {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .link-item {
+    @include centralizar;
+    flex-direction: column;
+    gap: 1rem;
+    text-decoration: none;
+    color: $cor-texto-secundario;
+    padding: 1.5rem 1rem;
+    border-radius: $raio-borda;
+    transition: all $transicao;
+    height: 100%;
+
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: white;
+      padding: 4px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    span {
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: center;
+      word-break: break-word;
+    }
+
+    &:hover {
+      @include efeito-vidro;
+      color: $cor-texto;
+      transform: translateY(-5px);
+    }
+  }
+
+  .link-actions {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all $transicao;
+    z-index: 10;
+
+    button {
+      background: $cor-superficie;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: all $transicao;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      color: $cor-texto;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .btn-edit {
+      &:hover {
+        background: #eab308;
+        color: white;
+        border-color: #eab308;
+      }
+    }
+
+    .btn-delete {
+      &:hover {
+        background: #ef4444;
+        color: white;
+        border-color: #ef4444;
+      }
+    }
+  }
+}
+
+.btn-add-link {
+  background: transparent;
+  border: 1px dashed $cor-texto-secundario;
+  color: $cor-texto-secundario;
+  padding: 0.8rem 1.5rem;
+  border-radius: $raio-borda;
+  cursor: pointer;
+  transition: all $transicao;
+
+  &:hover {
+    color: $cor-destaque;
+    border-color: $cor-destaque;
+    background: rgba($cor-destaque, 0.1);
+  }
+}

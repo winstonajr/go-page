@@ -1,0 +1,55 @@
+@use "variaveis" as *;
+@use "mixins" as *;
+
+.search-section {
+  width: 100%;
+}
+
+.search-form {
+  display: flex;
+  gap: 0.5rem;
+  @include efeito-vidro;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+  .search-engine-select,
+  .search-input {
+    background: transparent;
+    border: none;
+    color: $cor-texto;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    outline: none;
+  }
+
+  .search-engine-select {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+
+    option {
+      background: $cor-superficie;
+    }
+  }
+
+  .search-input {
+    flex-grow: 1;
+  }
+
+  .search-btn {
+    background: $cor-destaque;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    transition:
+      background $transicao,
+      transform $transicao;
+
+    &:hover {
+      background: lighten($cor-destaque, 10%);
+      transform: scale(1.05);
+    }
+  }
+}
