@@ -18,30 +18,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Baixar o código do repositório
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Instalar o pnpm
+      - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 10.30.3
 
-      - name: Instalar o Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "pnpm"
 
-      - name: Instalar dependências (pnpm install)
+      - name: Install dependencies
         run: pnpm install
 
-      - name: Rodar o compilador do Sass (Build)
-        run: pnpm build
+      - name: Build project
+        run: pnpm run build
 
-      - name: Configurar o Pages
+      - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Fazer o upload dos arquivos
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: "."
@@ -53,6 +53,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Publicar no GitHub Pages
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
