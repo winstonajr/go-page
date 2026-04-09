@@ -6,29 +6,41 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed; // Better for scrolling
   color: $cor-texto;
   font-family: "Inter", system-ui, sans-serif;
-  height: 100vh;
-  @include centralizar;
-  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; // Start from top for scrolling
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 2rem 1rem;
 
   &::before {
     content: "";
-    position: absolute;
+    position: fixed; // Fixed so it stays while scrolling
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.4);
     z-index: -1;
   }
 }
 
 .app-container {
   width: 100%;
-  max-width: 800px;
-  padding: 2rem;
+  max-width: 850px;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 3rem;
+  margin: auto; // Center if content is small
+}
+
+@media (max-width: 600px) {
+  .app-container {
+    gap: 2rem;
+    padding-bottom: 3rem;
+  }
 }

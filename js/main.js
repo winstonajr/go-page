@@ -32,17 +32,19 @@ class GoPage {
   }
 
   initEventListeners() {
-    this.searchForm.addEventListener("submit", (e) => this.handleSearch(e));
-    this.btnOpenModal.addEventListener("click", () => this.openModal());
-    this.btnCloseModal.addEventListener("click", () => this.closeModal());
-    this.addLinkForm.addEventListener("submit", (e) => this.handleSaveLink(e));
-    this.linksGrid.addEventListener("click", (e) => this.handleLinksClick(e));
-    this.searchEngine.addEventListener("change", () => this.saveSearchEngine());
+    if (this.searchForm) this.searchForm.addEventListener("submit", (e) => this.handleSearch(e));
+    if (this.btnOpenModal) this.btnOpenModal.addEventListener("click", () => this.openModal());
+    if (this.btnCloseModal) this.btnCloseModal.addEventListener("click", () => this.closeModal());
+    if (this.addLinkForm) this.addLinkForm.addEventListener("submit", (e) => this.handleSaveLink(e));
+    if (this.linksGrid) this.linksGrid.addEventListener("click", (e) => this.handleLinksClick(e));
+    if (this.searchEngine) this.searchEngine.addEventListener("change", () => this.saveSearchEngine());
     
     // Close modal on click outside
-    this.modal.addEventListener("click", (e) => {
-      if (e.target === this.modal) this.closeModal();
-    });
+    if (this.modal) {
+      this.modal.addEventListener("click", (e) => {
+        if (e.target === this.modal) this.closeModal();
+      });
+    }
   }
 
   initClock() {
@@ -50,10 +52,15 @@ class GoPage {
       const now = new Date();
       
       const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-      this.clockElement.textContent = now.toLocaleTimeString('pt-BR', timeOptions);
-      
       const dateOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-      this.dateElement.textContent = now.toLocaleDateString('pt-BR', dateOptions);
+
+      if (this.clockElement) {
+        this.clockElement.textContent = now.toLocaleTimeString('pt-BR', timeOptions);
+      }
+      
+      if (this.dateElement) {
+        this.dateElement.textContent = now.toLocaleDateString('pt-BR', dateOptions);
+      }
     };
 
     updateClock();
@@ -75,7 +82,7 @@ class GoPage {
 
   loadSearchEngine() {
     const saved = localStorage.getItem(this.SEARCH_ENGINE_KEY);
-    if (saved) {
+    if (saved && this.searchEngine) {
       this.searchEngine.value = saved;
     }
   }
@@ -87,10 +94,12 @@ class GoPage {
       const link = links[index];
       this.linkNameInput.value = link.nome;
       this.linkUrlInput.value = link.url;
-      document.querySelector("#add-link-modal h2").textContent = "Editar Atalho";
+      const title = this.modal.querySelector("h2");
+      if (title) title.textContent = "Editar Atalho";
     } else {
       this.addLinkForm.reset();
-      document.querySelector("#add-link-modal h2").textContent = "Novo Atalho";
+      const title = this.modal.querySelector("h2");
+      if (title) title.textContent = "Novo Atalho";
     }
     this.modal.showModal();
     this.linkNameInput.focus();
@@ -154,6 +163,8 @@ class GoPage {
   }
 
   renderLinks() {
+    if (!this.linksGrid) return;
+    
     const links = this.getLinks();
     this.linksGrid.innerHTML = "";
 
@@ -194,25 +205,16 @@ class GoPage {
   }
 
   async loadBackground() {
-    const img = new Image();
     const randomId = Math.floor(Math.random() * 1000);
-    const url = `https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80`;
-    // Using a nice stable high-quality image from Unsplash as default, or we can stick to random
-    // But for better performance, let's use a curated set or just picsum with specific size
-    const picsumUrl = `https://picsum.photos/1920/1080?blur=1`;
+    const picsumUrl = `https://picsum.photos/1920/1080?random=${randomId}`;
     
-    // Smooth loading
     document.body.style.transition = "background-image 1s ease-in-out";
     
+    const img = new Image();
     img.onload = () => {
-      document.body.style.backgroundImage = `url('${img.src}')`;
+      document.body.style.backgroundImage = `url('${picsumUrl}')`;
     };
-    
-    // Prefer Unsplash for better aesthetics
-    img.src = `https://source.unsplash.com/random/1920x1080?nature,landscape,minimalist&sig=${randomId}`;
-    
-    // Fallback if unsplash is slow/down (Source Unsplash is actually deprecated, using Picsum is safer)
-    img.src = `https://picsum.photos/1920/1080?random=${randomId}`;
+    img.src = picsumUrl;
   }
 }
 
