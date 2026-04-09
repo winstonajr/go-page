@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "variaveis" as *;
 @use "mixins" as *;
 
@@ -87,7 +88,7 @@
       color: white;
 
       &:hover {
-        background: lighten($cor-destaque, 10%);
+        background: color.adjust($cor-destaque, $lightness: 10%);
         transform: translateY(-2px);
       }
     }

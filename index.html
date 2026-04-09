@@ -11,13 +11,20 @@
 <body>
   <main class="app-container">
 
+    <section class="clock-section">
+      <div id="clock" class="clock">00:00:00</div>
+      <div id="date" class="date">-- de -- de ----</div>
+    </section>
+
     <section class="search-section">
       <form id="search-form" class="search-form">
-        <select id="search-engine" class="search-engine-select">
-          <option value="https://www.google.com/search?q=">Google</option>
-          <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
-          <option value="https://www.bing.com/search?q=">Bing</option>
-        </select>
+        <div class="search-engine-wrapper">
+          <select id="search-engine" class="search-engine-select">
+            <option value="https://www.google.com/search?q=">Google</option>
+            <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
+            <option value="https://www.bing.com/search?q=">Bing</option>
+          </select>
+        </div>
 
         <input type="search" id="search-input" class="search-input" placeholder="Pesquise na web..." required autocomplete="off" autofocus>
         <button type="submit" class="search-btn"><i data-lucide="search"></i></button>

@@ -1,0 +1,39 @@
+@use "variaveis" as *;
+@use "mixins" as *;
+
+.clock-section {
+  text-align: center;
+  color: $cor-texto;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 1s ease-out;
+
+  .clock {
+    font-size: 5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -2px;
+  }
+
+  .date {
+    font-size: 1.2rem;
+    color: $cor-texto-secundario;
+    text-transform: capitalize;
+    font-weight: 400;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .clock-section {
+    .clock {
+      font-size: 3.5rem;
+    }
+    .date {
+      font-size: 1rem;
+    }
+  }
+}
